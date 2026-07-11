@@ -1,0 +1,23 @@
+name: "ranker_onnx"
+platform: "onnxruntime_onnx"
+max_batch_size: 256
+
+input [
+  { name: "user"  data_type: TYPE_INT64  dims: [ 1 ] },
+  { name: "movie" data_type: TYPE_INT64  dims: [ 1 ] },
+  { name: "seg"   data_type: TYPE_INT64  dims: [ 1 ] }
+]
+output [
+  { name: "score" data_type: TYPE_FP32  dims: [ 1 ] }
+]
+
+# Dynamic batching = the Triton talking point: server-side request coalescing.
+dynamic_batching {
+  preferred_batch_size: [ 8, 32, 64 ]
+  max_queue_delay_microseconds: 500
+}
+
+# Two model instances for concurrent execution (throughput story).
+instance_group [
+  { count: 2  kind: KIND_CPU }
+]

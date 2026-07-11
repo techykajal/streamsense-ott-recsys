@@ -1,0 +1,32 @@
+# ============================================================================
+# REQUIRES Python 3.10 or 3.11  (TFX 1.15 does NOT support 3.12+). Check with:
+#   python --version
+# Install inside an activated virtual environment: pip install -r requirements.txt
+# macOS Apple Silicon: TF/torch install natively; TF Serving + Triton run in Docker.
+# ============================================================================
+
+# Pin the TensorFlow ecosystem together so versions stay compatible.
+tensorflow==2.15.1
+tensorflow-recommenders==0.7.3
+tfx==1.15.1
+kfp==2.7.0
+tensorflow-serving-api==2.15.1
+tensorflow-recommenders==0.7.3
+tfx==1.15.1
+kfp==2.7.0
+tensorflow-serving-api==2.15.1
+
+# Ranking (PyTorch) + serving
+torch==2.3.1
+torchserve==0.11.1
+torch-model-archiver==0.11.1
+onnx==1.16.1
+onnxruntime==1.18.1
+
+
+# Features / content analysis / segmentation
+pandas
+numpy
+scikit-learn
+sentence-transformers==2.7.0   # GenAI content embeddings (swap for Gemini API if preferred)
+requests

@@ -1,0 +1,25 @@
+# --- Python ---
+.venv/
+venv/
+__pycache__/
+*.pyc
+.python-version
+
+# --- Data & model artifacts (do NOT push these to GitHub) ---
+data/
+artifacts/
+tfx/
+model_store/
+*.mar
+*.onnx
+*.pt
+*.db
+
+# --- Compiled pipeline / logs ---
+ott_pipeline.yaml
+*.log
+
+# --- OS / editor ---
+.DS_Store
+.vscode/
+.idea/

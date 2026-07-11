@@ -1,0 +1,13 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+data/
+artifacts/
+tfx/
+model_store/
+*.mar
+*.log
+.git/
+.DS_Store
+node_modules/
