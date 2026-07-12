@@ -1,25 +1,25 @@
-# --- Python ---
+# Python
 .venv/
 venv/
 __pycache__/
 *.pyc
 .python-version
 
-# --- Data & model artifacts (do NOT push these to GitHub) ---
+# Regeneratable data and scratch working dirs (NOT committed)
 data/
 artifacts/
 tfx/
 model_store/
 *.mar
-*.onnx
-*.pt
 *.db
-
-# --- Compiled pipeline / logs ---
-ott_pipeline.yaml
 *.log
+ott_pipeline.yaml
 
-# --- OS / editor ---
+# Registered models live in models/ and ARE committed on purpose:
+# the training->serving handoff, a POC stand-in for a model registry
+# (MLflow / Vertex Model Registry / S3). So *.pt / *.onnx are NOT globally ignored.
+
+# OS / editor
 .DS_Store
 .vscode/
 .idea/
