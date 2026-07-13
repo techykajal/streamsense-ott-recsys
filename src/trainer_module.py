@@ -13,8 +13,8 @@ USER, MOVIE, SEG, LABEL = "user_id", "movie_id", "segment", "label"
 
 def preprocessing_fn(inputs):
     out = {}
-    out[USER] = tft.compute_and_apply_vocabulary(inputs[USER], top_k=50_000, name="user_vocab")
-    out[MOVIE] = tft.compute_and_apply_vocabulary(inputs[MOVIE], top_k=50_000, name="movie_vocab")
+    out[USER] = tft.compute_and_apply_vocabulary(inputs[USER], top_k=50_000, vocab_filename="user_vocab")
+    out[MOVIE] = tft.compute_and_apply_vocabulary(inputs[MOVIE], top_k=50_000, vocab_filename="movie_vocab")
     out[SEG] = tf.cast(inputs[SEG], tf.int64)
     out[LABEL] = tf.cast(inputs[LABEL], tf.float32)
     return out
