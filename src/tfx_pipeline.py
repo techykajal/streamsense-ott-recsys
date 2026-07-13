@@ -53,9 +53,23 @@ def build_pipeline(pipeline_root, metadata_connection=None) -> tfx.dsl.Pipeline:
         schema=schema.outputs["schema"],
         train_args=tfx.proto.TrainArgs(num_steps=2000),
         eval_args=tfx.proto.EvalArgs(num_steps=500))
+    # Evaluator (TFMA): feed RAW examples; the model's serving_default signature parses
+    # tf.Example -> applies the tf.Transform layer -> predicts, so no client preprocessing.
+    import tensorflow_model_analysis as tfma
+    eval_config = tfma.EvalConfig(
+        model_specs=[tfma.ModelSpec(signature_name="serving_default",
+                                    label_key="label",
+                                    prediction_key="prediction")],
+        slicing_specs=[tfma.SlicingSpec()],                 # overall slice
+        metrics_specs=[tfma.MetricsSpec(metrics=[
+            tfma.MetricConfig(class_name="ExampleCount"),
+            tfma.MetricConfig(class_name="AUC"),
+            tfma.MetricConfig(class_name="BinaryAccuracy"),
+        ])])
     evaluator = tfx.components.Evaluator(
         examples=example_gen.outputs["examples"],
-        model=trainer.outputs["model"])
+        model=trainer.outputs["model"],
+        eval_config=eval_config)
     pusher = tfx.components.Pusher(
         model=trainer.outputs["model"],
         push_destination=tfx.proto.PushDestination(
@@ -77,14 +91,24 @@ def run_local():
 
 
 def compile_kfp(out="ott_pipeline.yaml"):
-    """Compile the identical DAG to Kubeflow Pipelines v2 IR (runs on Vertex AI / GKE KFP)."""
+    """Compile the identical DAG to Kubeflow Pipelines v2 IR (runs on Vertex AI / GKE KFP).
+
+    The compiler stages the user-code wheels under pipeline_root and checks it exists, so we
+    need a real, reachable root. For an actual Vertex run set KFP_PIPELINE_ROOT to your bucket:
+        KFP_PIPELINE_ROOT=gs://<your-bucket>/ott_ranking python src/tfx_pipeline.py --compile-kfp
+    With no env var we default to a LOCAL root so the YAML compiles anywhere (no GCS needed).
+    """
     from tfx.orchestration.kubeflow.v2 import kubeflow_v2_dag_runner as kfp_runner
+    kfp_root = os.environ.get("KFP_PIPELINE_ROOT",
+                              os.path.abspath(f"tfx_kfp/{PIPELINE_NAME}"))
+    if not kfp_root.startswith("gs://"):
+        os.makedirs(kfp_root, exist_ok=True)     # local root must exist for wheel staging
     runner = kfp_runner.KubeflowV2DagRunner(
         config=kfp_runner.KubeflowV2DagRunnerConfig(
             default_image="gcr.io/tfx-oss-public/tfx:1.15.1"),
         output_filename=out)
-    runner.run(build_pipeline(pipeline_root=f"gs://YOUR_BUCKET/{PIPELINE_NAME}"))
-    print(f"Compiled Kubeflow v2 pipeline → {out}")
+    runner.run(build_pipeline(pipeline_root=kfp_root))
+    print(f"Compiled Kubeflow v2 pipeline → {out}  (pipeline_root={kfp_root})")
 
 
 if __name__ == "__main__":
