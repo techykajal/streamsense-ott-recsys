@@ -25,7 +25,8 @@ METADATA = os.path.join(PIPELINE_ROOT, "metadata.db")
 SERVING = os.path.abspath("artifacts/ranking_tf")
 
 
-def build_pipeline(pipeline_root, metadata_connection=None) -> tfx.dsl.Pipeline:
+def build_pipeline(pipeline_root, metadata_connection=None,
+                   pipeline_name=PIPELINE_NAME) -> tfx.dsl.Pipeline:
     example_gen = tfx.components.ImportExampleGen(
         input_base=DATA_ROOT,
         input_config=example_gen_pb2.Input(splits=[
@@ -78,7 +79,7 @@ def build_pipeline(pipeline_root, metadata_connection=None) -> tfx.dsl.Pipeline:
     components = [example_gen, stats, schema, validator, transform,
                   trainer, evaluator, pusher]
     return tfx.dsl.Pipeline(
-        pipeline_name=PIPELINE_NAME,
+        pipeline_name=pipeline_name,
         pipeline_root=pipeline_root,
         components=components,
         metadata_connection_config=metadata_connection)
@@ -107,7 +108,9 @@ def compile_kfp(out="ott_pipeline.yaml"):
         config=kfp_runner.KubeflowV2DagRunnerConfig(
             default_image="gcr.io/tfx-oss-public/tfx:1.15.1"),
         output_filename=out)
-    runner.run(build_pipeline(pipeline_root=kfp_root))
+    # KFP v2 pipeline names must be DNS-style: [a-z0-9][a-z0-9-]* (no underscores).
+    runner.run(build_pipeline(pipeline_root=kfp_root,
+                              pipeline_name=PIPELINE_NAME.replace("_", "-")))
     print(f"Compiled Kubeflow v2 pipeline → {out}  (pipeline_root={kfp_root})")
 
 
