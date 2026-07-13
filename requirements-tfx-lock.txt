@@ -1,0 +1,1026 @@
+# ============================================================================
+# TFX 1.15.1 fully-pinned lock (generated with uv, resolved for x86_64 Linux + Python 3.10).
+# Installing from this file is FAST and deterministic — every version is pinned, so pip has
+# nothing to backtrack on (that was the "resolution-too-deep" / 30-min-hang problem).
+# Includes tfx, tensorflow 2.15.1, apache-beam, tensorflow-transform/-data-validation,
+# ml-metadata, and kfp-pipeline-spec 0.2.2 (protobuf-3 compatible, for the Kubeflow compile).
+# Use inside a Python 3.10 environment:  pip install -r requirements-tfx-lock.txt
+# ============================================================================
+absl-py==1.4.0
+    # via
+    #   ml-metadata
+    #   ml-pipelines-sdk
+    #   rouge-score
+    #   tensorboard
+    #   tensorflow
+    #   tensorflow-data-validation
+    #   tensorflow-metadata
+    #   tensorflow-model-analysis
+    #   tensorflow-transform
+    #   tfx
+    #   tfx-bsl
+aiofiles==25.1.0
+    # via cloud-sql-python-connector
+aiohappyeyeballs==2.7.1
+    # via aiohttp
+aiohttp==3.14.1
+    # via cloud-sql-python-connector
+aiosignal==1.4.0
+    # via aiohttp
+annotated-types==0.7.0
+    # via pydantic
+anyio==4.14.2
+    # via
+    #   google-genai
+    #   httpx
+    #   jupyter-server
+apache-beam==2.74.0
+    # via
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+    #   tensorflow-transform
+    #   tfx
+    #   tfx-bsl
+argon2-cffi==25.1.0
+    # via jupyter-server
+argon2-cffi-bindings==25.1.0
+    # via argon2-cffi
+arrow==1.4.0
+    # via isoduration
+asn1crypto==1.5.1
+    # via scramp
+astunparse==1.6.3
+    # via tensorflow
+async-lru==2.3.0
+    # via jupyterlab
+async-timeout==5.0.1
+    # via aiohttp
+attrs==23.2.0
+    # via
+    #   aiohttp
+    #   jsonschema
+    #   ml-metadata
+    #   referencing
+    #   tfx
+babel==2.18.0
+    # via jupyterlab-server
+backcall==0.2.0
+    # via ipython
+backports-tarfile==1.2.0
+    # via jaraco-context
+beartype==0.22.9
+    # via apache-beam
+beautifulsoup4==4.15.0
+    # via nbconvert
+betterproto==1.2.5
+    # via envoy-data-plane
+bleach==6.4.0
+    # via nbconvert
+cachetools==6.2.6
+    # via apache-beam
+certifi==2026.6.17
+    # via
+    #   google-cloud-aiplatform
+    #   httpcore
+    #   httpx
+    #   kubernetes
+    #   requests
+cffi==2.1.0
+    # via
+    #   argon2-cffi-bindings
+    #   cryptography
+charset-normalizer==3.4.9
+    # via requests
+click==8.4.2
+    # via
+    #   nltk
+    #   tfx
+cloud-sql-python-connector==1.20.4
+    # via apache-beam
+colorama==0.4.6
+    # via sacrebleu
+comm==0.2.3
+    # via
+    #   ipykernel
+    #   ipywidgets
+cryptography==47.0.0
+    # via
+    #   apache-beam
+    #   cloud-sql-python-connector
+    #   google-auth
+    #   secretstorage
+debugpy==1.8.21
+    # via ipykernel
+decorator==5.3.1
+    # via ipython
+defusedxml==0.7.1
+    # via
+    #   nbconvert
+    #   nltk
+distro==1.9.0
+    # via google-genai
+dnspython==2.8.0
+    # via
+    #   cloud-sql-python-connector
+    #   pymongo
+docker==4.4.4
+    # via
+    #   ml-pipelines-sdk
+    #   tfx
+docstring-parser==0.18.0
+    # via google-cloud-aiplatform
+envoy-data-plane==0.1.0
+    # via apache-beam
+exceptiongroup==1.3.1
+    # via anyio
+fastavro==1.12.2
+    # via apache-beam
+fasteners==0.20
+    # via
+    #   apache-beam
+    #   google-apitools
+fastjsonschema==2.21.2
+    # via nbformat
+flatbuffers==25.12.19
+    # via tensorflow
+fqdn==1.5.1
+    # via jsonschema
+frozenlist==1.8.0
+    # via
+    #   aiohttp
+    #   aiosignal
+gast==0.7.0
+    # via tensorflow
+google-api-core==2.29.0
+    # via
+    #   apache-beam
+    #   google-api-python-client
+    #   google-cloud-aiplatform
+    #   google-cloud-bigquery
+    #   google-cloud-bigquery-storage
+    #   google-cloud-bigtable
+    #   google-cloud-build
+    #   google-cloud-core
+    #   google-cloud-datastore
+    #   google-cloud-dlp
+    #   google-cloud-kms
+    #   google-cloud-language
+    #   google-cloud-monitoring
+    #   google-cloud-pubsub
+    #   google-cloud-recommendations-ai
+    #   google-cloud-resource-manager
+    #   google-cloud-secret-manager
+    #   google-cloud-spanner
+    #   google-cloud-storage
+    #   google-cloud-videointelligence
+    #   google-cloud-vision
+    #   tfx
+google-api-python-client==1.12.11
+    # via
+    #   ml-pipelines-sdk
+    #   tfx
+    #   tfx-bsl
+google-apitools==0.5.31
+    # via
+    #   apache-beam
+    #   ml-pipelines-sdk
+    #   tfx
+google-auth==2.55.2
+    # via
+    #   apache-beam
+    #   cloud-sql-python-connector
+    #   google-api-core
+    #   google-api-python-client
+    #   google-auth-httplib2
+    #   google-auth-oauthlib
+    #   google-cloud-aiplatform
+    #   google-cloud-bigquery
+    #   google-cloud-bigquery-storage
+    #   google-cloud-bigtable
+    #   google-cloud-build
+    #   google-cloud-core
+    #   google-cloud-datastore
+    #   google-cloud-dlp
+    #   google-cloud-kms
+    #   google-cloud-language
+    #   google-cloud-monitoring
+    #   google-cloud-pubsub
+    #   google-cloud-recommendations-ai
+    #   google-cloud-resource-manager
+    #   google-cloud-secret-manager
+    #   google-cloud-storage
+    #   google-cloud-videointelligence
+    #   google-cloud-vision
+    #   google-genai
+    #   keyrings-google-artifactregistry-auth
+    #   kubernetes
+    #   tensorboard
+google-auth-httplib2==0.2.1
+    # via
+    #   apache-beam
+    #   google-api-python-client
+google-auth-oauthlib==1.4.0
+    # via tensorboard
+google-cloud-aiplatform==1.160.0
+    # via
+    #   apache-beam
+    #   tfx
+google-cloud-bigquery==3.42.2
+    # via
+    #   apache-beam
+    #   google-cloud-aiplatform
+    #   tfx
+google-cloud-bigquery-storage==2.36.2
+    # via apache-beam
+google-cloud-bigtable==2.36.0
+    # via apache-beam
+google-cloud-build==3.35.0
+    # via apache-beam
+google-cloud-core==2.6.0
+    # via
+    #   apache-beam
+    #   google-cloud-bigquery
+    #   google-cloud-bigtable
+    #   google-cloud-datastore
+    #   google-cloud-spanner
+    #   google-cloud-storage
+google-cloud-datastore==2.23.0
+    # via apache-beam
+google-cloud-dlp==3.34.0
+    # via apache-beam
+google-cloud-kms==3.11.0
+    # via apache-beam
+google-cloud-language==2.19.0
+    # via apache-beam
+google-cloud-monitoring==2.29.1
+    # via google-cloud-spanner
+google-cloud-pubsub==2.36.0
+    # via apache-beam
+google-cloud-recommendations-ai==0.10.18
+    # via apache-beam
+google-cloud-resource-manager==1.16.0
+    # via google-cloud-aiplatform
+google-cloud-secret-manager==2.26.0
+    # via apache-beam
+google-cloud-spanner==3.64.0
+    # via apache-beam
+google-cloud-storage==3.12.1
+    # via
+    #   apache-beam
+    #   google-cloud-aiplatform
+google-cloud-videointelligence==2.18.0
+    # via apache-beam
+google-cloud-vision==3.12.1
+    # via apache-beam
+google-crc32c==1.8.0
+    # via
+    #   google-cloud-bigtable
+    #   google-cloud-storage
+    #   google-resumable-media
+google-genai==2.11.0
+    # via google-cloud-aiplatform
+google-pasta==0.2.0
+    # via tensorflow
+google-resumable-media==2.10.0
+    # via
+    #   google-cloud-bigquery
+    #   google-cloud-storage
+googleapis-common-protos==1.73.0
+    # via
+    #   google-api-core
+    #   grpc-google-iam-v1
+    #   grpcio-status
+grpc-google-iam-v1==0.14.3
+    # via
+    #   google-cloud-bigtable
+    #   google-cloud-build
+    #   google-cloud-kms
+    #   google-cloud-pubsub
+    #   google-cloud-resource-manager
+    #   google-cloud-secret-manager
+    #   google-cloud-spanner
+grpc-interceptor==0.15.4
+    # via google-cloud-spanner
+grpcio==1.82.1
+    # via
+    #   apache-beam
+    #   google-api-core
+    #   google-cloud-bigquery-storage
+    #   google-cloud-build
+    #   google-cloud-datastore
+    #   google-cloud-dlp
+    #   google-cloud-kms
+    #   google-cloud-language
+    #   google-cloud-monitoring
+    #   google-cloud-pubsub
+    #   google-cloud-resource-manager
+    #   google-cloud-secret-manager
+    #   google-cloud-videointelligence
+    #   google-cloud-vision
+    #   googleapis-common-protos
+    #   grpc-google-iam-v1
+    #   grpc-interceptor
+    #   grpcio-status
+    #   keras-tuner
+    #   ml-metadata
+    #   tensorboard
+    #   tensorflow
+    #   tensorflow-serving-api
+    #   tfx
+grpcio-status==1.48.2
+    # via
+    #   google-api-core
+    #   google-cloud-pubsub
+grpclib==0.4.9
+    # via betterproto
+h11==0.16.0
+    # via httpcore
+h2==4.3.0
+    # via grpclib
+h5py==3.16.0
+    # via tensorflow
+hpack==4.2.0
+    # via h2
+httpcore==1.0.9
+    # via httpx
+httplib2==0.31.2
+    # via
+    #   apache-beam
+    #   google-api-python-client
+    #   google-apitools
+    #   google-auth-httplib2
+    #   oauth2client
+httpx==0.28.1
+    # via
+    #   google-genai
+    #   jupyterlab
+hyperframe==6.1.0
+    # via h2
+idna==3.18
+    # via
+    #   anyio
+    #   httpx
+    #   jsonschema
+    #   requests
+    #   yarl
+importlib-metadata==9.0.0
+    # via keyring
+ipykernel==7.3.0
+    # via jupyterlab
+ipython==7.34.0
+    # via
+    #   ipykernel
+    #   ipywidgets
+    #   tensorflow-model-analysis
+ipython-genutils==0.2.0
+    # via ipywidgets
+ipywidgets==7.8.5
+    # via tensorflow-model-analysis
+isoduration==20.11.0
+    # via jsonschema
+jaraco-classes==3.4.0
+    # via keyring
+jaraco-context==6.1.2
+    # via keyring
+jaraco-functools==4.5.0
+    # via keyring
+jedi==0.20.0
+    # via ipython
+jeepney==0.9.0
+    # via
+    #   keyring
+    #   secretstorage
+jinja2==3.1.6
+    # via
+    #   jupyter-server
+    #   jupyterlab
+    #   jupyterlab-server
+    #   ml-pipelines-sdk
+    #   nbconvert
+    #   tfx
+joblib==1.5.3
+    # via
+    #   nltk
+    #   scikit-learn
+    #   tensorflow-data-validation
+json5==0.15.0
+    # via jupyterlab-server
+jsonpickle==3.4.2
+    # via apache-beam
+jsonpointer==3.1.1
+    # via jsonschema
+jsonschema==4.26.0
+    # via
+    #   jupyter-events
+    #   jupyterlab-server
+    #   nbformat
+jsonschema-specifications==2025.9.1
+    # via jsonschema
+jupyter-builder==1.1.0
+    # via
+    #   jupyterlab
+    #   notebook
+jupyter-client==8.9.1
+    # via
+    #   ipykernel
+    #   jupyter-server
+    #   nbclient
+jupyter-core==5.9.1
+    # via
+    #   ipykernel
+    #   jupyter-builder
+    #   jupyter-client
+    #   jupyter-server
+    #   jupyterlab
+    #   nbclient
+    #   nbconvert
+    #   nbformat
+jupyter-events==0.12.1
+    # via jupyter-server
+jupyter-lsp==2.3.1
+    # via jupyterlab
+jupyter-server==2.20.0
+    # via
+    #   jupyter-lsp
+    #   jupyterlab
+    #   jupyterlab-server
+    #   notebook
+    #   notebook-shim
+jupyter-server-terminals==0.5.4
+    # via jupyter-server
+jupyterlab==4.6.1
+    # via notebook
+jupyterlab-pygments==0.3.0
+    # via nbconvert
+jupyterlab-server==2.28.0
+    # via
+    #   jupyterlab
+    #   notebook
+jupyterlab-widgets==1.1.11
+    # via ipywidgets
+keras==2.15.0
+    # via
+    #   keras-tuner
+    #   tensorflow
+keras-tuner==1.4.8
+    # via tfx
+keyring==25.7.0
+    # via keyrings-google-artifactregistry-auth
+keyrings-google-artifactregistry-auth==1.1.2
+    # via apache-beam
+kfp-pipeline-spec==0.2.2
+    # via -r /tmp/req3.in
+kt-legacy==1.0.5
+    # via keras-tuner
+kubernetes==12.0.1
+    # via tfx
+lark==1.3.1
+    # via rfc3987-syntax
+libclang==18.1.1
+    # via tensorflow
+lxml==6.1.1
+    # via sacrebleu
+markdown==3.10.2
+    # via tensorboard
+markupsafe==3.0.3
+    # via
+    #   jinja2
+    #   nbconvert
+    #   werkzeug
+matplotlib-inline==0.2.2
+    # via
+    #   ipykernel
+    #   ipython
+mistune==3.3.3
+    # via nbconvert
+ml-dtypes==0.3.2
+    # via tensorflow
+ml-metadata==1.15.0
+    # via
+    #   ml-pipelines-sdk
+    #   tfx
+ml-pipelines-sdk==1.15.1
+    # via tfx
+mmh3==5.2.1
+    # via google-cloud-spanner
+more-itertools==11.1.0
+    # via
+    #   jaraco-classes
+    #   jaraco-functools
+multidict==6.7.1
+    # via
+    #   aiohttp
+    #   grpclib
+    #   yarl
+nbclient==0.11.0
+    # via nbconvert
+nbconvert==7.17.1
+    # via jupyter-server
+nbformat==5.10.4
+    # via
+    #   jupyter-server
+    #   nbclient
+    #   nbconvert
+nest-asyncio2==1.7.2
+    # via ipykernel
+nltk==3.10.0
+    # via rouge-score
+notebook==7.6.0
+    # via widgetsnbextension
+notebook-shim==0.2.4
+    # via
+    #   jupyterlab
+    #   notebook
+numpy==1.26.4
+    # via
+    #   apache-beam
+    #   h5py
+    #   ml-dtypes
+    #   pandas
+    #   pyarrow
+    #   rouge-score
+    #   sacrebleu
+    #   scikit-learn
+    #   scipy
+    #   tensorboard
+    #   tensorflow
+    #   tensorflow-data-validation
+    #   tensorflow-hub
+    #   tensorflow-model-analysis
+    #   tensorflow-transform
+    #   tfx
+    #   tfx-bsl
+oauth2client==4.1.3
+    # via google-apitools
+oauthlib==3.3.1
+    # via requests-oauthlib
+objsize==0.7.1
+    # via apache-beam
+opentelemetry-api==1.43.0
+    # via
+    #   google-cloud-pubsub
+    #   google-cloud-spanner
+    #   opentelemetry-resourcedetector-gcp
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+opentelemetry-resourcedetector-gcp==1.12.0a0
+    # via google-cloud-spanner
+opentelemetry-sdk==1.43.0
+    # via
+    #   google-cloud-pubsub
+    #   google-cloud-spanner
+    #   opentelemetry-resourcedetector-gcp
+opentelemetry-semantic-conventions==0.64b0
+    # via
+    #   google-cloud-spanner
+    #   opentelemetry-sdk
+opt-einsum==3.4.0
+    # via tensorflow
+orjson==3.11.9
+    # via apache-beam
+overrides==7.7.0
+    # via jupyter-server
+packaging==26.2
+    # via
+    #   apache-beam
+    #   google-cloud-aiplatform
+    #   google-cloud-bigquery
+    #   ipykernel
+    #   jupyter-events
+    #   jupyter-server
+    #   jupyterlab
+    #   jupyterlab-server
+    #   keras-tuner
+    #   ml-pipelines-sdk
+    #   nbconvert
+    #   tensorflow
+    #   tfx
+    #   wheel
+pandas==1.5.3
+    # via
+    #   -r /tmp/req3.in
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+    #   tfx-bsl
+pandocfilters==1.5.1
+    # via nbconvert
+parso==0.8.7
+    # via jedi
+pexpect==4.9.0
+    # via ipython
+pg8000==1.31.5
+    # via apache-beam
+pickleshare==0.7.5
+    # via ipython
+pillow==12.3.0
+    # via
+    #   apache-beam
+    #   tensorflow-model-analysis
+platformdirs==4.10.0
+    # via jupyter-core
+pluggy==1.6.0
+    # via keyrings-google-artifactregistry-auth
+portalocker==3.2.0
+    # via sacrebleu
+portpicker==1.6.0
+    # via
+    #   ml-pipelines-sdk
+    #   tfx
+prometheus-client==0.25.0
+    # via jupyter-server
+prompt-toolkit==3.0.52
+    # via ipython
+propcache==0.5.2
+    # via
+    #   aiohttp
+    #   yarl
+proto-plus==1.27.1
+    # via
+    #   apache-beam
+    #   google-api-core
+    #   google-cloud-aiplatform
+    #   google-cloud-bigquery-storage
+    #   google-cloud-bigtable
+    #   google-cloud-build
+    #   google-cloud-datastore
+    #   google-cloud-dlp
+    #   google-cloud-kms
+    #   google-cloud-language
+    #   google-cloud-monitoring
+    #   google-cloud-pubsub
+    #   google-cloud-recommendations-ai
+    #   google-cloud-resource-manager
+    #   google-cloud-secret-manager
+    #   google-cloud-spanner
+    #   google-cloud-videointelligence
+    #   google-cloud-vision
+protobuf==3.20.3
+    # via
+    #   apache-beam
+    #   google-api-core
+    #   google-cloud-aiplatform
+    #   google-cloud-bigquery-storage
+    #   google-cloud-bigtable
+    #   google-cloud-build
+    #   google-cloud-datastore
+    #   google-cloud-dlp
+    #   google-cloud-kms
+    #   google-cloud-language
+    #   google-cloud-monitoring
+    #   google-cloud-pubsub
+    #   google-cloud-recommendations-ai
+    #   google-cloud-resource-manager
+    #   google-cloud-secret-manager
+    #   google-cloud-spanner
+    #   google-cloud-videointelligence
+    #   google-cloud-vision
+    #   googleapis-common-protos
+    #   grpc-google-iam-v1
+    #   grpcio-status
+    #   keras-tuner
+    #   kfp-pipeline-spec
+    #   ml-metadata
+    #   ml-pipelines-sdk
+    #   proto-plus
+    #   tensorboard
+    #   tensorflow
+    #   tensorflow-data-validation
+    #   tensorflow-hub
+    #   tensorflow-metadata
+    #   tensorflow-model-analysis
+    #   tensorflow-serving-api
+    #   tensorflow-transform
+    #   tfx
+    #   tfx-bsl
+psutil==7.2.2
+    # via
+    #   ipykernel
+    #   portpicker
+ptyprocess==0.7.0
+    # via
+    #   pexpect
+    #   terminado
+pyarrow==10.0.1
+    # via
+    #   -r /tmp/req3.in
+    #   apache-beam
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+    #   tensorflow-transform
+    #   tfx
+    #   tfx-bsl
+pyarrow-hotfix==0.7
+    # via apache-beam
+pyasn1==0.6.4
+    # via
+    #   oauth2client
+    #   pyasn1-modules
+    #   rsa
+pyasn1-modules==0.4.2
+    # via
+    #   google-auth
+    #   oauth2client
+pycparser==3.0
+    # via cffi
+pydantic==2.13.4
+    # via
+    #   google-cloud-aiplatform
+    #   google-genai
+pydantic-core==2.46.4
+    # via pydantic
+pydot==1.4.2
+    # via tensorflow-transform
+pyfarmhash==0.3.2
+    # via tensorflow-data-validation
+pygments==2.20.0
+    # via
+    #   ipython
+    #   nbconvert
+pymongo==4.17.0
+    # via apache-beam
+pymysql==1.2.0
+    # via apache-beam
+pyparsing==3.3.2
+    # via
+    #   httplib2
+    #   pydot
+python-dateutil==2.9.0.post0
+    # via
+    #   apache-beam
+    #   arrow
+    #   google-cloud-bigquery
+    #   jupyter-client
+    #   kubernetes
+    #   pandas
+    #   pg8000
+python-json-logger==4.1.0
+    # via jupyter-events
+python-tds==1.17.1
+    # via apache-beam
+pytz==2026.2
+    # via
+    #   apache-beam
+    #   pandas
+pyyaml==6.0.3
+    # via
+    #   apache-beam
+    #   jupyter-events
+    #   kubernetes
+    #   tfx
+pyzmq==27.1.0
+    # via
+    #   ipykernel
+    #   jupyter-client
+    #   jupyter-server
+referencing==0.37.0
+    # via
+    #   jsonschema
+    #   jsonschema-specifications
+    #   jupyter-events
+regex==2026.7.10
+    # via
+    #   apache-beam
+    #   nltk
+    #   sacrebleu
+requests==2.34.2
+    # via
+    #   apache-beam
+    #   cloud-sql-python-connector
+    #   docker
+    #   google-api-core
+    #   google-auth
+    #   google-cloud-bigquery
+    #   google-cloud-storage
+    #   google-genai
+    #   jupyterlab-server
+    #   keras-tuner
+    #   keyrings-google-artifactregistry-auth
+    #   kubernetes
+    #   opentelemetry-resourcedetector-gcp
+    #   requests-oauthlib
+    #   tensorboard
+requests-oauthlib==2.0.0
+    # via
+    #   google-auth-oauthlib
+    #   kubernetes
+rfc3339-validator==0.1.4
+    # via
+    #   jsonschema
+    #   jupyter-events
+rfc3986-validator==0.1.1
+    # via
+    #   jsonschema
+    #   jupyter-events
+rfc3987-syntax==1.1.0
+    # via jsonschema
+rouge-score==0.1.2
+    # via tensorflow-model-analysis
+rpds-py==0.30.0
+    # via
+    #   jsonschema
+    #   referencing
+rsa==4.9.1
+    # via oauth2client
+sacrebleu==2.6.0
+    # via tensorflow-model-analysis
+scikit-learn==1.7.2
+    # via -r /tmp/req3.in
+scipy==1.12.0
+    # via
+    #   scikit-learn
+    #   tensorflow-model-analysis
+    #   tfx
+scramp==1.4.12
+    # via pg8000
+secretstorage==3.5.0
+    # via keyring
+send2trash==2.1.0
+    # via jupyter-server
+setuptools==83.0.0
+    # via
+    #   ipython
+    #   kubernetes
+    #   tensorboard
+    #   tensorflow
+six==1.17.0
+    # via
+    #   astunparse
+    #   docker
+    #   google-api-python-client
+    #   google-apitools
+    #   google-pasta
+    #   kubernetes
+    #   ml-metadata
+    #   oauth2client
+    #   python-dateutil
+    #   rfc3339-validator
+    #   rouge-score
+    #   tensorboard
+    #   tensorflow
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+sniffio==1.3.1
+    # via google-genai
+sortedcontainers==2.4.0
+    # via apache-beam
+soupsieve==2.8.4
+    # via beautifulsoup4
+sqlparse==0.5.5
+    # via google-cloud-spanner
+stringcase==1.2.0
+    # via betterproto
+tabulate==0.10.0
+    # via sacrebleu
+tenacity==9.1.4
+    # via google-genai
+tensorboard==2.15.2
+    # via tensorflow
+tensorboard-data-server==0.7.2
+    # via tensorboard
+tensorflow==2.15.1
+    # via
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+    #   tensorflow-serving-api
+    #   tensorflow-transform
+    #   tfx
+    #   tfx-bsl
+tensorflow-data-validation==1.15.1
+    # via tfx
+tensorflow-estimator==2.15.0
+    # via
+    #   tensorflow
+    #   tensorflow-model-analysis
+tensorflow-hub==0.15.0
+    # via tfx
+tensorflow-io-gcs-filesystem==0.37.1
+    # via tensorflow
+tensorflow-metadata==1.15.0
+    # via
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+    #   tensorflow-transform
+    #   tfx-bsl
+tensorflow-model-analysis==0.46.0
+    # via tfx
+tensorflow-serving-api==2.15.1
+    # via
+    #   tfx
+    #   tfx-bsl
+tensorflow-transform==1.15.0
+    # via tfx
+termcolor==3.3.0
+    # via tensorflow
+terminado==0.18.1
+    # via
+    #   jupyter-server
+    #   jupyter-server-terminals
+tfx==1.15.1
+    # via -r /tmp/req3.in
+tfx-bsl==1.15.1
+    # via
+    #   tensorflow-data-validation
+    #   tensorflow-model-analysis
+    #   tensorflow-transform
+    #   tfx
+threadpoolctl==3.6.0
+    # via scikit-learn
+tinycss2==1.5.1
+    # via bleach
+tomli==2.4.1
+    # via
+    #   jupyter-builder
+    #   jupyterlab
+tornado==6.5.7
+    # via
+    #   ipykernel
+    #   jupyter-client
+    #   jupyter-server
+    #   jupyterlab
+    #   notebook
+    #   terminado
+tqdm==4.68.4
+    # via nltk
+traitlets==5.15.1
+    # via
+    #   ipykernel
+    #   ipython
+    #   ipywidgets
+    #   jupyter-builder
+    #   jupyter-client
+    #   jupyter-core
+    #   jupyter-events
+    #   jupyter-server
+    #   jupyterlab
+    #   matplotlib-inline
+    #   nbclient
+    #   nbconvert
+    #   nbformat
+typing-extensions==4.16.0
+    # via
+    #   aiohttp
+    #   aiosignal
+    #   anyio
+    #   apache-beam
+    #   async-lru
+    #   beautifulsoup4
+    #   cryptography
+    #   exceptiongroup
+    #   google-cloud-aiplatform
+    #   google-genai
+    #   grpcio
+    #   jupyter-client
+    #   mistune
+    #   ml-pipelines-sdk
+    #   multidict
+    #   opentelemetry-api
+    #   opentelemetry-resourcedetector-gcp
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+    #   pydantic
+    #   pydantic-core
+    #   referencing
+    #   tensorflow
+    #   tfx
+    #   typing-inspection
+typing-inspection==0.4.2
+    # via pydantic
+tzdata==2026.3
+    # via arrow
+uri-template==1.3.0
+    # via jsonschema
+uritemplate==3.0.1
+    # via google-api-python-client
+urllib3==2.7.0
+    # via
+    #   kubernetes
+    #   requests
+wcwidth==0.8.2
+    # via prompt-toolkit
+webcolors==25.10.0
+    # via jsonschema
+webencodings==0.5.1
+    # via
+    #   bleach
+    #   tinycss2
+websocket-client==1.9.0
+    # via
+    #   docker
+    #   jupyter-server
+    #   kubernetes
+websockets==16.1
+    # via google-genai
+werkzeug==3.1.8
+    # via tensorboard
+wheel==0.47.0
+    # via astunparse
+widgetsnbextension==3.6.10
+    # via ipywidgets
+wrapt==1.14.2
+    # via tensorflow
+yarl==1.24.2
+    # via aiohttp
+zipp==4.1.0
+    # via importlib-metadata
+zstandard==0.25.0
+    # via apache-beam
