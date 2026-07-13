@@ -117,6 +117,8 @@ defusedxml==0.7.1
     # via
     #   nbconvert
     #   nltk
+dill==0.3.1.1
+    # via apache-beam
 distro==1.9.0
     # via google-genai
 dnspython==2.8.0
