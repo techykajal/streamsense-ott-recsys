@@ -1,0 +1,18 @@
+{
+  "PyTorch ranker": {
+    "AUC": 0.8237,
+    "NDCG@10": 0.9201,
+    "Recall@10": 0.2526,
+    "lift_vs_popularity_%": 2.2
+  },
+  "Two-tower retrieval": {
+    "Recall@10": 0.0713,
+    "Recall@20": 0.1303,
+    "Recall@50": 0.2389,
+    "HitRate@10": 0.865
+  },
+  "TFX ranker": {
+    "AUC": 0.903,
+    "accuracy": 0.8396
+  }
+}
