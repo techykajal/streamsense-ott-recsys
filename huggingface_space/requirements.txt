@@ -1,0 +1,6 @@
+streamlit>=1.39
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14.0
+tensorflow-cpu==2.15.1
+torch>=2.0
