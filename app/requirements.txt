@@ -1,0 +1,6 @@
+streamlit>=1.30
+requests>=2.31
+pandas>=2.0
+numpy>=1.24
+pyarrow>=14.0
+tensorflow==2.15.1   # only used to serialize tf.Example for the ranker request
