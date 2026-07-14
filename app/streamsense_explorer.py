@@ -65,18 +65,20 @@ def tfx_score(triples, timeout=30):
     return [float(p[0]) if isinstance(p, list) else float(p) for p in preds]
 
 
-def _walk_scores(obj, acc):
-    if isinstance(obj, dict):
-        if "score" in obj: acc.append(float(obj["score"]))
-        else: [_walk_scores(v, acc) for v in obj.values()]
-    elif isinstance(obj, list):
-        [_walk_scores(v, acc) for v in obj]
-    elif isinstance(obj, (int, float)):
-        acc.append(float(obj))
+def _parse_torch(resp):
+    """PyTorch serving returns [{'score':..}, ...] (or nested one level). -> list of floats."""
+    flat = resp[0] if (isinstance(resp, list) and resp and isinstance(resp[0], list)) else resp
+    out = []
+    for d in flat if isinstance(flat, list) else []:
+        if isinstance(d, dict) and "score" in d:
+            out.append(float(d["score"]))
+        elif isinstance(d, (int, float)):
+            out.append(float(d))
+    return out
 
 
 def torch_score(user_id, segment, movie_ids, maps, timeout=30):
-    """PyTorch ranker (TorchServe). Uses id_maps to convert ids->indices. Returns (ids, scores)."""
+    """PyTorch ranker. Uses id_maps to convert ids->indices. Returns (ids, scores)."""
     uid, mid = maps["uid"], maps["mid"]
     rows, kept = [], []
     for m in movie_ids:
@@ -85,8 +87,7 @@ def torch_score(user_id, segment, movie_ids, maps, timeout=30):
             kept.append(m)
     if not rows:
         return [], []
-    resp = requests.post(TORCH_URL, json=rows, timeout=timeout).json()
-    scores = []; _walk_scores(resp, scores)
+    scores = _parse_torch(requests.post(TORCH_URL, json=rows, timeout=timeout).json())
     n = min(len(kept), len(scores))
     return kept[:n], scores[:n]
 
@@ -126,16 +127,16 @@ except Exception as e:
 
 with st.sidebar:
     st.header("Serving mode")
-    mode = st.radio("Strategy", ["🧪 Testing — single ranker (TFX)",
-                                 "🏭 Prod — two-stage (retrieval + PyTorch ranker)"])
-    is_prod = mode.startswith("🏭")
+    mode = st.radio("Strategy", ["One Stage Ranker (TFX)",
+                                 "Two Stage (Retrieval: TF + Ranker: PyTorch)"])
+    is_prod = mode.startswith("Two Stage")
     if is_prod:
-        st.caption("Two-tower retrieval shortlists candidates, PyTorch ranker orders them — the "
-                   "pattern for millions of items. Needs retrieval (:8501) + TorchServe (:8080).")
+        st.caption("Two-tower retrieval shortlists candidates, then the PyTorch ranker orders them — "
+                   "the pattern for millions of items. Needs retrieval (:8501) + PyTorch ranker (:8080).")
         st.write("Retrieval:", "🟢" if health(RETRIEVAL_URL) else "🔴")
         st.write("PyTorch ranker:", "🟢" if health(TORCH_URL) else "🔴")
     else:
-        st.caption("A single TFX ranker scores the catalogue directly — no retrieval. Works because "
+        st.caption("A single TFX ranker scores the catalogue directly — no retrieval. Fine because "
                    "this catalogue is small. Needs the TFX ranker (:8502).")
         st.write("TFX ranker:", "🟢" if health(TFX_URL) else "🔴")
     topk = st.slider("How many recommendations", 5, 20, 10)
@@ -146,10 +147,11 @@ tab1, tab2, tab3 = st.tabs(["👤 For a user", "🎞️ For a movie", "📊 Mode
 
 def recommend_for_user(uid, seg):
     if is_prod:
+        # two-stage: retrieval shortlists candidates, PyTorch ranker orders them
         cands = retrieve(uid, seg, k=60)
         ids, scores = torch_score(uid, seg, cands, maps)
         return pd.DataFrame({"movie_id": ids, "score": scores})
-    # Testing: score unseen catalogue directly with the TFX ranker
+    # one-stage: TFX ranker scores the unseen catalogue directly
     seen = set(inter[inter.user_id == uid].movie_id)
     cands = [m for m in movies.movie_id if m not in seen][:scan_cap]
     scores = tfx_score([(uid, m, seg, id2title.get(m, "")) for m in cands])
@@ -159,7 +161,7 @@ def recommend_for_user(uid, seg):
 def score_users_for_movie(mid, title):
     users = sorted(inter.user_id.unique(), key=lambda x: int(x))
     if is_prod:
-        # item->user has no retrieval stage; use the PyTorch ranker over all users
+        # two-stage mode uses the PyTorch ranker over all users
         r, s = torch_score_multi_user(users, mid, title)
         return pd.DataFrame({"user_id": r, "score": s})
     scores = tfx_score([(u, mid, int(user_seg.get(u, 0)), title) for u in users])
@@ -175,15 +177,14 @@ def torch_score_multi_user(users, mid, title):
             kept.append(u)
     if not rows:
         return [], []
-    resp = requests.post(TORCH_URL, json=rows, timeout=30).json()
-    scores = []; _walk_scores(resp, scores)
+    scores = _parse_torch(requests.post(TORCH_URL, json=rows, timeout=30).json())
     n = min(len(kept), len(scores))
     return kept[:n], scores[:n]
 
 
 # ---- Tab 1 ----
 with tab1:
-    st.caption(f"Mode: **{'Prod (retrieval → PyTorch ranker)' if is_prod else 'Testing (TFX ranker only)'}**")
+    st.caption(f"Mode: **{'Two Stage (Retrieval TF → PyTorch ranker)' if is_prod else 'One Stage Ranker (TFX)'}**")
     users = sorted(inter.user_id.unique(), key=lambda x: int(x))
     uid = st.selectbox("Select a user", users, key="u")
     seg = int(user_seg.get(uid, 0))
